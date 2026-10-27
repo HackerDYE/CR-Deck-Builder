@@ -1,4 +1,4 @@
-# RoyaleCoach
+# RoyaleDeckBuilder
 
 **A personalized Clash Royale deck recommendation tool.**
 

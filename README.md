@@ -8,7 +8,7 @@
 
 The strongest meta deck is not always the best deck for an individual player. A player may own certain cards at high levels, know some archetypes well, or lack the resources to upgrade a popular deck.
 
-RoyaleCoach aims to recommend **practical decks and card upgrades** by combining a player's collection with a small set of candidate decks. Over time, it may also consider reliable, permitted meta and battle statistics.
+RoyaleDeckBuilder aims to recommend **practical decks and card upgrades** by combining a player's collection with a small set of candidate decks. Over time, it may also consider reliable, permitted meta and battle statistics.
 
 ## The problem
 
@@ -28,6 +28,12 @@ The first working version will:
 3. Recommend the best **three** candidate decks.
 4. Explain the recommendations using transparent rules (for example, available cards and card levels).
 5. Suggest a card to upgrade for each recommended deck.
+
+Design principle: Personalization over optimization.
+
+RoyaleDeckBuilder should not exclusively recommend the strongest meta decks. Its goal is to help players discover viable, enjoyable decks that fit their card collection, preferred playstyle, and personal preferences.
+
+The system will distinguish between mandatory constraints and optional preferences, allowing users to balance competitiveness with enjoyment.
 
 **Important:** The first version will run locally with sample data. It will not need a live API, a chatbot, or a website.
 

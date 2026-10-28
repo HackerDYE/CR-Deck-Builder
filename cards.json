@@ -39,5 +39,26 @@
         "name": "Three Musketeers",
         "elixir": 9,
         "tags": ["anti_air", "ranged", "win_condition", "big_spell_bait"]
+    },
+    {
+        "name": "The Log",
+        "elixir": 2,
+        "tags": ["small_spell", "splash"]
+    },
+    {
+        "name": "Cannon",
+        "elixir": 3,
+        "tags": ["defensive_building", "anti_hog"]
+    },
+    {
+        "name": "Giant",
+        "elixir": 5,
+        "tags": ["win_condition", "tank"]
+    },
+    {
+        "name": "Baby Dragon",
+        "elixir": 4,
+        "tags": ["anti_air", "splash"]
     }
+
 ]

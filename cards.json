@@ -1,0 +1,43 @@
+
+[
+    {
+        "name": "Heal Spirit",
+        "elixir": 1,
+        "tags": ["cycle"]
+    },
+    {
+        "name": "Skeletons",
+        "elixir": 1,
+        "tags": ["cycle", "distraction"]
+    },
+    {
+        "name": "Knight",
+        "elixir": 3,
+        "tags": ["meat_shield", "anti_rush"]
+    },
+    {
+        "name": "Hog Rider",
+        "elixir": 4,
+        "tags": ["win_condition"]
+    },
+    {
+        "name": "Musketeer",
+        "elixir": 4,
+        "tags": ["anti_air", "ranged"]
+    },
+    {
+        "name": "Fireball",
+        "elixir": 4,
+        "tags": ["big_spell"]
+    },
+    {
+        "name": "Elite Barbarians",
+        "elixir": 6,
+        "tags": ["anti_tank", "anti_hog"]
+    },
+    {
+        "name": "Three Musketeers",
+        "elixir": 9,
+        "tags": ["anti_air", "ranged", "win_condition", "big_spell_bait"]
+    }
+]

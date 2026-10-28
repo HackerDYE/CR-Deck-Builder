@@ -1,97 +1,107 @@
 # RoyaleDeckBuilder
 
-**A personalized Clash Royale deck recommendation tool.**
+A beginner-friendly **Clash Royale deck analyzer** built with Python.
 
-> Project status: Planning / Day 1 — this is my first mini project.
+> **Status:** Early working prototype — my first software mini project.
 
 ## Overview
 
-The strongest meta deck is not always the best deck for an individual player. A player may own certain cards at high levels, know some archetypes well, or lack the resources to upgrade a popular deck.
+RoyaleDeckBuilder is a small project for exploring how Clash Royale decks are put together. It reads a deck from a JSON file and checks basic characteristics such as average elixir cost, win conditions, defensive options, and spell coverage.
 
-RoyaleDeckBuilder aims to recommend **practical decks and card upgrades** by combining a player's collection with a small set of candidate decks. Over time, it may also consider reliable, permitted meta and battle statistics.
+The goal of **version 1** is not to find the perfect deck or recreate the judgment of an experienced player. It is to build a simple, explainable program while learning Python, JSON, and Git.
 
-## The problem
+## What it does now
 
-Existing deck rankings help players identify strong decks, but they do not always answer:
+- Loads card data from `cards.json`.
+- Calculates the deck's average elixir cost.
+- Counts how many cards cover each role, based on manually assigned tags.
+- Reports whether each role has **no option**, **one option**, or **multiple options**.
 
-- Which deck fits **my current card levels**?
-- Which deck can I use **without upgrading many cards**?
-- Which cards should I **prioritize upgrading**?
-- Why is one deck a better fit for me than another?
+The current role checks include:
 
-## Minimum viable product (MVP)
+- Win conditions
+- Heavy-push defense (anti-tank or defensive buildings)
+- Hog Rider defense
+- Swarm or distraction
+- Small spells and big spells
+- Air defense
+- Splash damage
 
-The first working version will:
+These checks are **guidelines, not a deck-quality score**. Some effective decks intentionally lack a conventional role or use multiple offensive cards instead.
 
-1. Read a sample player profile from a local JSON file.
-2. Compare the player's card collection against **5–10 manually curated decks**.
-3. Recommend the best **three** candidate decks.
-4. Explain the recommendations using transparent rules (for example, available cards and card levels).
-5. Suggest a card to upgrade for each recommended deck.
+## Getting started
 
-Design principle: Personalization over optimization.
+### Requirements
 
-RoyaleDeckBuilder should not exclusively recommend the strongest meta decks. Its goal is to help players discover viable, enjoyable decks that fit their card collection, preferred playstyle, and personal preferences.
+- Python 3
+- Any code editor (VS Code recommended)
 
-The system will distinguish between mandatory constraints and optional preferences, allowing users to balance competitiveness with enjoyment.
+No third-party Python packages are required for the current version.
 
-**Important:** The first version will run locally with sample data. It will not need a live API, a chatbot, or a website.
+### Run locally
 
-## Planned features (not implemented yet)
+1. Download or clone this repository.
+2. Open the project folder in VS Code.
+3. Make sure `main.py` and `cards.json` are in the same folder.
+4. From the VS Code terminal on Windows, run:
 
-- Enter a Clash Royale player tag and load a profile using the official Clash Royale API.
-- Show a player's card levels and current deck.
-- Add a simple Streamlit web interface.
-- Include up-to-date meta information when a permitted, reliable data source is available.
-- Analyze matchups or personal win rates **only when enough match data exists**; display sample sizes.
-- Optionally use an LLM to explain recommendations, while keeping scores and evidence checkable.
+   `py main.py`
 
-## Proposed technology
+Edit the eight card entries in `cards.json` to experiment with a different deck, then run the program again.
 
-- **Python** — core logic and data processing
-- **JSON** — sample player profiles and candidate decks
-- **Git & GitHub** — version control and project history
-- **Requests** — API requests (later)
-- **pytest** — tests (later)
-- **Streamlit** — optional web interface (later)
+### Project structure
 
-## Roadmap
+    RoyaleDeckBuilder/
+    ├── main.py       # Load data and analyze a deck
+    ├── cards.json    # Example deck and card-role tags
+    └── README.md     # Project documentation
 
-- [x] Decide on the project idea and scope.
-- [x] Write the initial README.
-- [ ] Create the repository and make the first commit.
-- [ ] Learn basic Python dictionaries, lists, functions, and JSON.
-- [ ] Create a sample player profile and five sample decks.
-- [ ] Implement a basic deck-matching algorithm.
-- [ ] Show the top three recommendations with explanations.
-- [ ] Add basic tests.
-- [ ] Connect to the official Clash Royale API.
-- [ ] Build a simple interface.
-- [ ] Evaluate and improve recommendations.
+## Card data
 
-## Initial recommendation approach
+Each card currently has a name, elixir cost, and a list of custom role tags:
 
-Start with explainable rules, not machine learning:
+    {
+      "name": "Skeletons",
+      "elixir": 1,
+      "tags": ["cycle", "swarm", "distraction"]
+    }
 
-- **Availability:** Does the player have all required cards?
-- **Levels:** Are the deck's cards sufficiently upgraded for the player's intended mode?
-- **Familiarity (later):** Has the player used some of these cards recently?
-- **Meta strength (later):** Is there a reliable, dated dataset supporting this deck?
+The tags are manually chosen for this prototype. They describe possible roles, **not guaranteed counters**. For example, two cards marked `anti_hog` may not be equally reliable against Hog Rider.
 
-The recommender will state *why* it chose a deck. Scores and their weights are experimental and will be tested, not treated as objective truths.
+## Scope and roadmap
 
-## Data sources and limitations
+### Version 1: Basic deck analyzer
 
-- Planned player data source: [Official Clash Royale API](https://developer.clashroyale.com/).
-- [RoyaleAPI](https://royaleapi.com/) is a useful website for research, but its public developer API was discontinued. **This project will not rely on scraping RoyaleAPI.**
-- A recent battle log is not a complete lifetime match history. Any win-rate or matchup analysis must disclose the sample size and may be unavailable.
-- API keys are secrets and must never be committed to GitHub.
-- This project provides **out-of-game advice**, not gameplay automation.
+- [x] Set up Python and VS Code.
+- [x] Store sample cards in JSON.
+- [x] Load JSON data in Python.
+- [x] Calculate average elixir.
+- [x] Check and count basic deck roles.
+- [ ] Allow users to choose a deck without manually editing JSON.
+- [ ] Add basic validation and tests.
+- [ ] Improve the clarity of analysis messages.
 
-## Current state
+### Possible future features (not commitments)
 
-This repository is in the planning stage. No functional recommendation engine has been implemented yet.
+- Simple deck suggestions from a small list of existing decks.
+- Favorite-card and elixir-preference filters.
+- Better handling of card synergy, matchup coverage, and different deck archetypes.
+- Player card levels and profiles from the official Clash Royale API.
+- A simple web interface.
+
+**Not in version 1:** AI coaching, automatically generating competitive decks, live meta tracking, detailed matchup predictions, or a comprehensive card-synergy database.
+
+## Limitations
+
+- Role tags are subjective and incomplete.
+- Counting matching tags does not measure counter strength, card synergy, or win rate.
+- The current program analyzes the cards in a local JSON file; it does not fetch live game data.
+- An unusual but viable deck may trigger warnings because it breaks conventional deck-building guidelines.
+
+## Why I'm building this
+
+I enjoy Clash Royale and often help friends think about deck choices. This is a way to combine that interest with learning software development. The priority is to finish a small project I understand, then improve it if time and experience allow.
 
 ## Disclaimer
 
-This material is unofficial and is not endorsed by Supercell. For more information see [Supercell's Fan Content Policy](https://supercell.com/en/fan-content-policy/).
+This is an unofficial fan project and is not endorsed by Supercell. See [Supercell's Fan Content Policy](https://supercell.com/en/fan-content-policy/).

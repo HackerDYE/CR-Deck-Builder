@@ -77,7 +77,42 @@ deck_roles = {
 }
 
 
-def analyze_deck(deck, deck_roles):
+role_warnings = {
+    "Win conditions":
+        "No clear win condition detected. The deck may struggle "
+        "to consistently damage enemy towers.",
+
+    "Heavy-push defense":
+        "Limited answers to heavy pushes. Tanks supported by "
+        "other troops may be difficult to stop.",
+
+    "Anti-Hog options":
+        "No dedicated Hog Rider counter detected. Defending "
+        "against repeated Hog attacks could be difficult.",
+
+    "Swarm / Distraction":
+        "Few distraction options detected. You may struggle "
+        "to stall powerful single-target units.",
+
+    "Small spells":
+        "No small spell detected. Clearing cheap swarms "
+        "and dealing with bait strategies may be harder.",
+
+    "Big spells":
+        "No big spell detected. You may have fewer ways to "
+        "punish grouped support troops or finish towers.",
+
+    "Air defense":
+        "No air defense detected. The deck may be vulnerable "
+        "to flying troops.",
+
+    "Splash damage":
+        "No splash damage detected. Groups of weak troops "
+        "may be difficult to remove efficiently."
+}
+
+
+def analyze_deck(deck, deck_roles, role_warnings):
 
     print("\n===== DECK ANALYSIS =====")
 
@@ -107,21 +142,32 @@ def analyze_deck(deck, deck_roles):
     for card in sorted_cards[:4]:
         print(f"- {card['name']}")
 
+    
     # 3. Deck role analysis
     print("\n===== ROLE COVERAGE =====")
 
     for role, required_tags in deck_roles.items():
 
-        count = 0
+        matching_cards = []
 
         for card in deck:
             for tag in required_tags:
                 if tag in card["tags"]:
-                    count += 1
+                    matching_cards.append(card["name"])
                     break
 
-        print(f"{role}: {count}")
+        print(f"\n{role}: {len(matching_cards)}")
+
+        if len(matching_cards) == 0:
+            print("  Potential weakness:")
+            print(f"  {role_warnings[role]}")
+
+        else:
+            for name in matching_cards:
+                print(f"  - {name}")
+
+
 
 
 #Analyze Deck
-analyze_deck(cards, deck_roles)
+analyze_deck(cards, deck_roles, role_warnings)

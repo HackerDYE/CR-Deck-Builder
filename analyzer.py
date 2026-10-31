@@ -1,35 +1,37 @@
-def analyze_deck(deck, deck_roles, role_warnings):
-
-    print("\n===== DECK ANALYSIS =====")
-
-    # 1. Average elixir
+def calculate_average_elixir(deck):
     total_elixir = 0
 
     for card in deck:
         total_elixir += card["elixir"]
 
-    average_elixir = total_elixir / len(deck)
+    return total_elixir / len(deck)
 
-    print(f"Average Elixir: {average_elixir:.2f}")
 
-    # 2. Minimum 4-card cycle
+def calculate_min_four_card_cycle(deck):
     sorted_cards = sorted(
         deck, key=lambda card: card["elixir"]
     )
 
-    min_four_cards = 0
+    total = 0
 
     for card in sorted_cards[:4]:
-        min_four_cards += card["elixir"]
+        total += card["elixir"]
 
-    print(f"Minimum 4-Card Cycle: {min_four_cards}")
+    return total
 
-    print("Cycle Cards:")
-    for card in sorted_cards[:4]:
-        print(f"- {card['name']}")
 
-    
-    # 3. Deck role analysis
+def analyze_deck(deck, deck_roles, role_warnings):
+    print("\n===== DECK ANALYSIS =====")
+
+    #Deck Statistics
+    average = calculate_average_elixir
+    cycle = calculate_min_four_card_cycle(deck)
+
+    print(f"Average Elixir: {average:.2f}")
+    print(f"Minimum 4-Card Cycle: {cycle}")
+
+
+    # Deck role analysis
     print("\n===== ROLE COVERAGE =====")
 
     for role, required_tags in deck_roles.items():
@@ -51,3 +53,4 @@ def analyze_deck(deck, deck_roles, role_warnings):
         else:
             for name in matching_cards:
                 print(f"  - {name}")
+

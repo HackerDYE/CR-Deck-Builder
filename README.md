@@ -77,7 +77,7 @@ The tags are manually chosen for this prototype. They describe possible roles, *
 - [x] Load JSON data in Python.
 - [x] Calculate average elixir.
 - [x] Check and count basic deck roles.
-- [ ] Allow users to choose a deck without manually editing JSON.
+- [x] Allow users to choose a deck without manually editing JSON.
 - [ ] Add basic validation and tests.
 - [ ] Improve the clarity of analysis messages.
 

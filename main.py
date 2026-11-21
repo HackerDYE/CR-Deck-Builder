@@ -3,6 +3,7 @@
 
 import json
 from analyzer import analyze_deck
+from deck import Deck
 
 # ==============================
 # RoyaleDeckBuilder - Deck Selection
@@ -57,8 +58,11 @@ while True:
     # All checks passed
     break
 
+
 # Build the selected deck
 cards = [available_cards[n - 1] for n in numbers]
+
+selected_deck = Deck(cards)
 
 print("\n===== YOUR DECK =====")
 
@@ -115,4 +119,8 @@ role_warnings = {
 
 
 #Analyze Deck
-analyze_deck(cards, deck_roles, role_warnings)
+analyze_deck(
+    selected_deck.cards,
+    deck_roles,
+    role_warnings
+)

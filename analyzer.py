@@ -24,8 +24,9 @@ def analyze_deck(deck, deck_roles, role_warnings):
     print("\n===== DECK ANALYSIS =====")
 
     #Deck Statistics
-    average = calculate_average_elixir
+    average = calculate_average_elixir(deck)
     cycle = calculate_min_four_card_cycle(deck)
+
 
     print(f"Average Elixir: {average:.2f}")
     print(f"Minimum 4-Card Cycle: {cycle}")
@@ -34,23 +35,39 @@ def analyze_deck(deck, deck_roles, role_warnings):
     # Deck role analysis
     print("\n===== ROLE COVERAGE =====")
 
+    
+    coverage = get_role_coverage(deck, deck_roles)
+
+    for role, matching_cards in coverage.items():
+
+        print(f"\n{role}: {len(matching_cards)}")
+
+        if len(matching_cards) == 0:
+            print(f"  Potential weakness: {role_warnings[role]}")
+
+        else:
+            for name in matching_cards:
+                print(f"  - {name}")
+
+    
+
+
+
+def get_role_coverage(deck, deck_roles):
+
+    coverage = {}
+
     for role, required_tags in deck_roles.items():
 
         matching_cards = []
 
         for card in deck:
             for tag in required_tags:
+
                 if tag in card["tags"]:
                     matching_cards.append(card["name"])
                     break
 
-        print(f"\n{role}: {len(matching_cards)}")
+        coverage[role] = matching_cards
 
-        if len(matching_cards) == 0:
-            print("  Potential weakness:")
-            print(f"  {role_warnings[role]}")
-
-        else:
-            for name in matching_cards:
-                print(f"  - {name}")
-
+    return coverage

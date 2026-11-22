@@ -2,7 +2,8 @@ import unittest
 
 from analyzer import (
     calculate_average_elixir,
-    calculate_min_four_card_cycle
+    calculate_min_four_card_cycle,
+    get_role_coverage
 )
 
 
@@ -29,6 +30,30 @@ class TestDeckStatistics(unittest.TestCase):
 
         result = calculate_min_four_card_cycle(reversed_deck)
         self.assertEqual(result, 9)
+
+    def test_role_coverage(self):
+        deck = [
+            {"name": "Cannon",
+            "tags": ["anti_hog", "defensive_building"]},
+            {"name": "Tesla",
+            "tags": ["anti_hog", "defensive_building"]},
+            {"name": "Hog Rider",
+            "tags": ["win_condition"]}
+        ]
+
+        roles = {
+            "Hog defense": ["anti_hog", "defensive_building"],
+            "Small spells": ["small_spell"]
+        }
+
+        result = get_role_coverage(deck, roles)
+
+        self.assertEqual(
+            result["Hog defense"],
+            ["Cannon", "Tesla"]
+        )
+
+        self.assertEqual(result["Small spells"], [])
 
 
 if __name__ == "__main__":

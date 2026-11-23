@@ -78,12 +78,12 @@ The tags are manually chosen for this prototype. They describe possible roles, *
 - [x] Calculate average elixir.
 - [x] Check and count basic deck roles.
 - [x] Allow users to choose a deck without manually editing JSON.
-- [ ] Add basic validation and tests.
-- [ ] Improve the clarity of analysis messages.
+- [x] Add basic validation and tests.
+- [x] Improve the clarity of analysis messages.
 
-### Possible future features (not commitments)
+### Possible future features
 
-- Simple deck suggestions from a small list of existing decks.
+- Simple deck suggestions.
 - Favorite-card and elixir-preference filters.
 - Better handling of card synergy, matchup coverage, and different deck archetypes.
 - Player card levels and profiles from the official Clash Royale API.
